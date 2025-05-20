@@ -2,7 +2,7 @@ import 'package:finance_app/widgets/build_setting_tile.dart';
 import 'package:flutter/material.dart';
 
 class AccountTab extends StatelessWidget {
-  const AccountTab({Key? key}) : super(key: key);
+  const AccountTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class AccountTab extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                // User Profile Section
                 Center(
                   child: Column(
                     children: [
