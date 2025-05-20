@@ -201,6 +201,7 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
                 'Transaction ID': txn.transactionId,
                 'Phone Number': txn.phone ?? '—',
                 'Note': txn.note ?? txn.desc,
+                'Type': txn.transactionType ?? '-',
               }, txn.amount),
               const SizedBox(height: 40),
             ],

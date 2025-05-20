@@ -28,16 +28,6 @@ final List<IncomeItem> incomeData = [
   ),
 ];
 
-final Map<String, String> transactionDetails = {
-  'Transaction ID': '7236 1121 2830',
-  'Date': '08:16 · 18 May 2024',
-  'Type of Transactions': 'Top up e-money',
-  'Nominal': '\$180',
-  'Admin': '\$0.5',
-  'Recipient\'s number': '+62 813 8164 3328',
-  'Status': 'Success',
-};
-
 final banks = const [
   {'name': 'J.P. Morgan', 'abbr': 'JPMC', 'logo': 'assets/images/jp.png'},
   {'name': 'Wells Fargo', 'abbr': 'WFB', 'logo': 'assets/images/WFB.png'},

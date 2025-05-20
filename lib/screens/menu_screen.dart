@@ -8,6 +8,7 @@ import 'package:finance_app/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:intl/intl.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -18,6 +19,13 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   List<TransactionModel> recentTransactions = [];
+  bool _showBalance = true;
+
+  double balance = 41379000;
+
+  String get formattedBalance {
+    return NumberFormat("#,##0", "en_US").format(balance);
+  }
 
   void addTransaction(TransactionModel txn) async {
     await TransactionStorage.saveTransaction(txn);
@@ -37,6 +45,12 @@ class _MenuScreenState extends State<MenuScreen> {
     final loadedTransactions = await TransactionStorage.getTransactions();
     setState(() {
       recentTransactions = loadedTransactions;
+    });
+  }
+
+  void toggleBalanceVisibility() {
+    setState(() {
+      _showBalance = !_showBalance;
     });
   }
 
@@ -141,19 +155,26 @@ class _MenuScreenState extends State<MenuScreen> {
                           const Text('YOUR BALANCE'),
                           const SizedBox(height: 10),
                           Row(
-                            children: const [
+                            children: [
                               Text(
-                                '\$41,379,000',
-                                style: TextStyle(
-                                  fontSize: 24,
+                                _showBalance
+                                    ? '\$$formattedBalance'
+                                    : '••••••••',
+                                style: const TextStyle(
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(width: 5),
-                              Icon(
-                                Icons.remove_red_eye_outlined,
-                                size: 20,
-                                color: Colors.grey,
+                              GestureDetector(
+                                onTap: toggleBalanceVisibility,
+                                child: Icon(
+                                  _showBalance
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ],
                           ),
@@ -181,14 +202,19 @@ class _MenuScreenState extends State<MenuScreen> {
                               ActionIcon(
                                 icon: Icons.arrow_downward,
                                 label: 'Withdraw',
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => const WithdrawScreen(),
-                                    ),
-                                  );
+                                onTap: () async {
+                                  final result =
+                                      await Navigator.push<TransactionModel>(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (context) =>
+                                                  const WithdrawScreen(),
+                                        ),
+                                      );
+                                  if (result != null) {
+                                    addTransaction(result);
+                                  }
                                 },
                               ),
                               const ActionIcon(

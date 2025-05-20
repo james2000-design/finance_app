@@ -61,10 +61,8 @@ class _TransferScreenState extends State<TransferScreen> {
                       if (!mounted) return;
 
                       if (result != null) {
-                        Navigator.pop(
-                          context,
-                          result,
-                        ); // Return the transaction to MenuScreen
+                        // ignore: use_build_context_synchronously
+                        Navigator.pop(context, result);
                       }
                     },
                     child: Column(

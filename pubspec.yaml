@@ -83,6 +83,7 @@ flutter:
     - assets/images/WFB.png
     - assets/images/pnc.png
     - assets/images/morgan.png
+    - assets/images/withdraw.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

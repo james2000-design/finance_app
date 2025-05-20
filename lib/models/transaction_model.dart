@@ -10,6 +10,7 @@ class TransactionModel {
   final String transactionId;
   final String? phone;
   final String? note;
+  final String? transactionType; // NEW FIELD
 
   TransactionModel({
     required this.icon,
@@ -21,6 +22,7 @@ class TransactionModel {
     required this.transactionId,
     this.phone,
     this.note,
+    this.transactionType, // NEW FIELD
   });
 
   Map<String, dynamic> toJson() {
@@ -34,6 +36,7 @@ class TransactionModel {
       'transactionId': transactionId,
       'phone': phone,
       'note': note,
+      'transactionType': transactionType, // NEW FIELD
     };
   }
 
@@ -48,6 +51,7 @@ class TransactionModel {
       transactionId: json['transactionId'],
       phone: json['phone'],
       note: json['note'],
+      transactionType: json['transactionType'], // NEW FIELD
     );
   }
 }

@@ -1,4 +1,5 @@
 // tab_screen.dart
+import 'package:finance_app/screens/account_tab.dart';
 import 'package:finance_app/screens/stat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,7 +29,7 @@ class _TabScreenState extends State<TabScreen> {
       const Placeholder(),
       const Placeholder(),
       StatisticScreen(onBackToMenu: () => _onTabTapped(0)),
-      const Placeholder(),
+      const AccountTab(),
     ];
     return Scaffold(
       body: screens[_selectedIndex],

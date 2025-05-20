@@ -41,7 +41,7 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
 
     final transaction = TransactionModel(
       icon: AssetImage(widget.logoPath),
-      label: widget.bankName,
+      label: 'Transfer',
       desc: 'Transferred to ${_accountController.text}',
       amount: NumberFormat.currency(
         symbol: '\$',
@@ -50,6 +50,7 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
       date: formattedDate,
       isIncome: false,
       transactionId: generateTransactionId(),
+      transactionType: "Transfer",
       phone: _phoneController.text.isNotEmpty ? _phoneController.text : null,
       note: _noteController.text.isNotEmpty ? _noteController.text : null,
     );
@@ -86,7 +87,7 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
         _amountController.text.isNotEmpty;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add new transaction")),
+      appBar: AppBar(title: const Text("Transfer")),
       body:
           _isLoading
               ? const Center(child: CircularProgressIndicator())
