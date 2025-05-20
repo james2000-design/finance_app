@@ -42,6 +42,8 @@ dependencies:
   unicons: ^3.0.0
   material_design_icons_flutter: ^7.0.7296
   phosphor_flutter: ^2.1.0
+  shared_preferences: ^2.5.3
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,14 @@ flutter:
     - assets/images/youtube1.png
     - assets/images/playstore.jpeg
     - assets/images/icon.png
+    - assets/images/boa.png
+    - assets/images/charles.png
+    - assets/images/citi.png
+    - assets/images/goldman.jpeg
+    - assets/images/jp.png
+    - assets/images/WFB.png
+    - assets/images/pnc.png
+    - assets/images/morgan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,9 +1,11 @@
-import 'package:finance_app/data/transaction_data.dart';
-import 'package:finance_app/widgets/transaction_success_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_app/models/transaction_model.dart';
+import 'package:finance_app/widgets/transaction_success_widget.dart';
 
 class TransactionSuccessScreen extends StatefulWidget {
-  const TransactionSuccessScreen({super.key});
+  final TransactionModel transaction;
+
+  const TransactionSuccessScreen({super.key, required this.transaction});
 
   @override
   State<TransactionSuccessScreen> createState() =>
@@ -82,13 +84,11 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
                   shape: BoxShape.circle,
                 ),
               ),
-
               Transform.scale(
                 scale: _checkScale.value,
                 child: Container(
                   width: 56,
                   height: 56,
-
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(238, 34, 189, 127),
                     shape: BoxShape.circle,
@@ -100,7 +100,6 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
                   ),
                 ),
               ),
-
               if (_starFade.value > 0) ...[
                 Positioned(
                   top: 10,
@@ -142,14 +141,25 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
     );
   }
 
+  Widget buildStar(Color color, double size) {
+    return Icon(Icons.star, color: color, size: size);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final txn = widget.transaction;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const BackButton(color: Colors.black),
+        leading: BackButton(
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context, widget.transaction);
+          },
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -160,12 +170,11 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
               buildAnimatedSuccessIcon(),
               const SizedBox(height: 24),
 
-              // 📝 Animated Texts
               FadeTransition(
                 opacity: _titleFade,
-                child: const Text(
-                  'OVO Top up Successful!',
-                  style: TextStyle(
+                child: Text(
+                  '${txn.label} Successful!',
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF333333),
@@ -175,23 +184,29 @@ class _TransactionSuccessScreenState extends State<TransactionSuccessScreen>
               const SizedBox(height: 8),
               FadeTransition(
                 opacity: _subtitleFade,
-                child: const Text(
-                  'Successfully topped up \$180 to Tanjiro',
-                  style: TextStyle(fontSize: 16, color: Color(0xFF888888)),
+                child: Text(
+                  '${txn.desc} - ${txn.amount}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF888888),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
 
               const SizedBox(height: 32),
-              buildTransactionDetails(transactionDetails),
+              buildTransactionDetails({
+                'Date': txn.date,
+                'Status': 'Success',
+                'Transaction ID': txn.transactionId,
+                'Phone Number': txn.phone ?? '—',
+                'Note': txn.note ?? txn.desc,
+              }, txn.amount),
               const SizedBox(height: 40),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Widget buildStar(Color color, double size) {
-    return Icon(Icons.star, color: color, size: size);
   }
 }

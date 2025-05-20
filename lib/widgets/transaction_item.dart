@@ -6,7 +6,6 @@ class TransactionItem extends StatelessWidget {
   final TransactionModel model;
 
   const TransactionItem({super.key, required this.model});
-
   @override
   Widget build(BuildContext context) {
     return ListTile(

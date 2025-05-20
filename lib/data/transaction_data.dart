@@ -1,38 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/transaction_model.dart';
 
-const List<TransactionModel> transactions = [
-  TransactionModel(
-    icon: AssetImage('assets/images/youtube1.png'),
-    label: 'Youtube',
-    desc: 'Subscription Payment',
-    amount: '\$15,000',
-    date: '16 May 2024',
-  ),
-  TransactionModel(
-    icon: AssetImage('assets/images/stripe.jpeg'),
-    label: 'Stripe',
-    desc: 'Monthly Salary',
-    amount: '+\$3,000',
-    date: '15 May 2024',
-    isIncome: true,
-  ),
-  TransactionModel(
-    icon: AssetImage('assets/images/playstore.jpeg'),
-    label: 'Google Play',
-    desc: 'E-book Purchase',
-    amount: '\$139,000',
-    date: '14 May 2024',
-  ),
-  TransactionModel(
-    icon: AssetImage('assets/images/ovo.jpeg'),
-    label: 'OVO',
-    desc: 'Top Up E-Money',
-    amount: '\$180,000',
-    date: '18 May 2024',
-  ),
-];
-
 final List<IncomeItem> incomeData = [
   IncomeItem(
     label: 'Monthly Salary',
@@ -69,3 +37,22 @@ final Map<String, String> transactionDetails = {
   'Recipient\'s number': '+62 813 8164 3328',
   'Status': 'Success',
 };
+
+final banks = const [
+  {'name': 'J.P. Morgan', 'abbr': 'JPMC', 'logo': 'assets/images/jp.png'},
+  {'name': 'Wells Fargo', 'abbr': 'WFB', 'logo': 'assets/images/WFB.png'},
+  {'name': 'Morgan Stanley', 'abbr': 'MSB', 'logo': 'assets/images/morgan.png'},
+  {
+    'name': 'Goldman Sachs',
+    'abbr': 'GMSB',
+    'logo': 'assets/images/goldman.jpeg',
+  },
+  {'name': 'Citibank', 'abbr': 'CGOB', 'logo': 'assets/images/citi.png'},
+  {'name': 'Bank of America', 'abbr': 'BOA', 'logo': 'assets/images/boa.png'},
+  {
+    'name': 'Charles Schwab',
+    'abbr': 'CSB',
+    'logo': 'assets/images/charles.png',
+  },
+  {'name': 'PNC', 'abbr': 'PNC', 'logo': 'assets/images/pnc.png'},
+];

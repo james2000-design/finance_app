@@ -1,5 +1,3 @@
-// transaction_success_widgets.dart
-
 import 'package:flutter/material.dart';
 
 Widget buildSuccessIcon() {
@@ -118,7 +116,10 @@ Widget buildTotalRow(String label, String value) {
   );
 }
 
-Widget buildTransactionDetails(Map<String, String> details) {
+Widget buildTransactionDetails(
+  Map<String, String> details,
+  String totalAmount,
+) {
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -141,9 +142,9 @@ Widget buildTransactionDetails(Map<String, String> details) {
           }
           return buildDetailRow(entry.key, entry.value);
         }),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         const Divider(height: 0.1),
-        buildTotalRow('Total', '\$180.05'),
+        buildTotalRow('Total', totalAmount),
       ],
     ),
   );
